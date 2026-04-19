@@ -561,7 +561,7 @@
             <span class="hd-emoji">🥁</span>
             <div>
                 <div class="hd-title">HNC Percussão</div>
-                <div class="hd-sub">Visualizador Interativo de Partituras — Percussão HNC Bb</div>
+                <div class="hd-sub">Visualizador Interativo de Partituras de Percussão para o Hinário Novo Cântico</div>
             </div>
         </div>
         <button class="theme-toggle" id="themeToggle" title="Alternar tema">
@@ -670,6 +670,16 @@
                     <polyline points="9 18 15 12 9 6"></polyline>
                 </svg>
             </button>
+
+            <!-- HNC Treino -->
+            <a href="https://glauberlasantiago.github.io/hnc-treino/" target="_blank" rel="noopener"
+               class="btn" style="background:#6366f1; color:#fff; text-decoration:none;" title="Hinário completo sem percussão">
+                <svg class="icon-svg" style="width:14px;height:14px;fill:none;stroke:currentColor;" viewBox="0 0 24 24">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+                <span>HNC Treino</span>
+            </a>
 
             <!-- Tocar/Parar -->
             <button class="btn btn-play" id="bp" disabled>
@@ -1129,7 +1139,7 @@
             // Atribui o programa conforme o índice: 0=oboé, 1=triângulo, 2=caixa, 3=bumbo
             var prog = PART_PROGRAMS[idx] || 'oboe';
             // Volumes padrão: Oboé=100%, Triângulo=10%, Caixa=30%, Bumbo=30%
-            var defaultVols = [100, 10, 30, 30];
+            var defaultVols = [100, 40, 30, 40];
             var defaultVol = defaultVols[idx] !== undefined ? defaultVols[idx] : 100;
             partConfigs.push({ name: name, program: prog, vol: defaultVol, oct: 0 });
 
