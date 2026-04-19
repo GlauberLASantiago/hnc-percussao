@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -548,106 +549,7 @@
             color: var(--text-sub);
         }
 
-        /* ─── Painel de Volumes ─── */
-        .vol-panel {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            flex-wrap: wrap;
-            background: var(--ctrl-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 10px 16px;
-            margin-bottom: 16px;
-            transition: background 0.3s, border-color 0.3s;
-        }
 
-        .vol-panel-label {
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--text-sub);
-            text-transform: uppercase;
-            letter-spacing: .6px;
-            white-space: nowrap;
-            margin-right: 4px;
-        }
-
-        .vol-strip {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 5px 12px;
-            transition: background 0.3s, border-color 0.3s;
-        }
-
-        .vol-strip-name {
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--text-sub);
-            white-space: nowrap;
-            min-width: 60px;
-        }
-
-        .vol-strip input[type="range"] {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 90px;
-            height: 6px;
-            border-radius: 3px;
-            outline: none;
-            cursor: pointer;
-            background: linear-gradient(to right,
-                var(--vol-accent, #d97706) 0%,
-                var(--vol-accent, #d97706) var(--vol-pct, 100%),
-                var(--border) var(--vol-pct, 100%),
-                var(--border) 100%
-            );
-        }
-
-        .vol-strip input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 16px; height: 16px;
-            border-radius: 50%;
-            background: var(--vol-accent, #d97706);
-            border: 2px solid #fff;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.25);
-            cursor: pointer;
-        }
-
-        .vol-strip input[type="range"]::-moz-range-thumb {
-            width: 16px; height: 16px;
-            border-radius: 50%;
-            background: var(--vol-accent, #d97706);
-            border: 2px solid #fff;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.25);
-            cursor: pointer;
-        }
-
-        .vol-pct-label {
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--text-main);
-            min-width: 34px;
-            text-align: right;
-            font-variant-numeric: tabular-nums;
-        }
-
-        /* Cores por instrumento */
-        .vol-strip[data-part="0"] { --vol-accent: #6366f1; }
-        .vol-strip[data-part="1"] { --vol-accent: #06b6d4; }
-        .vol-strip[data-part="2"] { --vol-accent: #f59e0b; }
-        .vol-strip[data-part="3"] { --vol-accent: #ef4444; }
-
-        @media (max-width: 768px) {
-            .vol-panel { padding: 8px 10px; gap: 5px; }
-            .vol-strip { padding: 4px 8px; }
-            .vol-strip input[type="range"] { width: 64px; }
-            .vol-strip-name { min-width: 46px; font-size: 10px; }
-            .vol-pct-label { font-size: 11px; min-width: 28px; }
-        }
     </style>
 </head>
 
@@ -783,7 +685,7 @@
                 <input type="number" id="bpm" value="100" min="20" max="400" step="1">
                 <label class="check-wrap" style="font-size: 10px; margin-left: 2px; color: var(--text-sub);"
                     title="Reduzir 30 BPM automaticamente ao carregar">
-                    <input type="checkbox" id="bpmRedCheck" checked> -30
+                    <input type="checkbox" id="bpmRedCheck"> -30
                 </label>
             </div>
 
@@ -791,9 +693,9 @@
             <div class="met-wrap">
                 <label for="countInSelect" title="Compassos de metrônomo antes de começar">Contagem</label>
                 <select id="countInSelect">
-                    <option value="0">Desligada</option>
+                    <option value="0" selected>Desligada</option>
                     <option value="1">1 Compasso</option>
-                    <option value="2" selected>2 Compassos</option>
+                    <option value="2">2 Compassos</option>
                     <option value="4">4 Compassos</option>
                 </select>
             </div>
@@ -801,7 +703,7 @@
             <!-- Metrônomo -->
             <div class="met-wrap">
                 <label for="metCheck">Metrônomo</label>
-                <input type="checkbox" id="metCheck" checked>
+                <input type="checkbox" id="metCheck">
             </div>
 
             <!-- Trecho -->
@@ -887,35 +789,6 @@
             <div class="bt-hint">Atrasa o visual para sincronizar com fones Bluetooth — passos de 50 ms até 1200 ms.</div>
         </div>
 
-        <!-- Painel de Volumes por Staff -->
-        <div class="vol-panel" id="volPanel">
-            <span class="vol-panel-label">🔊 Volume</span>
-
-            <div class="vol-strip" data-part="0">
-                <span class="vol-strip-name">🎵 Oboé</span>
-                <input type="range" id="vol0" min="0" max="100" step="1" value="100">
-                <span class="vol-pct-label" id="vol0Label">100%</span>
-            </div>
-
-            <div class="vol-strip" data-part="1">
-                <span class="vol-strip-name">🔺 Triângulo</span>
-                <input type="range" id="vol1" min="0" max="100" step="1" value="50">
-                <span class="vol-pct-label" id="vol1Label">50%</span>
-            </div>
-
-            <div class="vol-strip" data-part="2">
-                <span class="vol-strip-name">🥁 Caixa</span>
-                <input type="range" id="vol2" min="0" max="100" step="1" value="100">
-                <span class="vol-pct-label" id="vol2Label">100%</span>
-            </div>
-
-            <div class="vol-strip" data-part="3">
-                <span class="vol-strip-name">🔴 Bumbo</span>
-                <input type="range" id="vol3" min="0" max="100" step="1" value="100">
-                <span class="vol-pct-label" id="vol3Label">100%</span>
-            </div>
-        </div>
-
         <div id="score"></div>
     </div>
 </div>
@@ -975,9 +848,22 @@
         2: 'https://raw.githubusercontent.com/GlauberLASantiago/hnc-percussao/main/caixa.mp3',
         3: 'https://raw.githubusercontent.com/GlauberLASantiago/hnc-percussao/main/bumbo.mp3'
     };
+    var PRATO_SAMPLE_URL = 'https://raw.githubusercontent.com/GlauberLASantiago/hnc-percussao/main/pratos-a2.mp3';
+    var PRATO_ROLL_URL = 'https://raw.githubusercontent.com/GlauberLASantiago/hnc-percussao/main/prato-susp-rufo.mp3';
+    var CAIXA_ROLL_URL = 'https://raw.githubusercontent.com/GlauberLASantiago/hnc-percussao/main/caixa-rufo.mp3';
+    var BUMBO_ROLL_URL = 'https://raw.githubusercontent.com/GlauberLASantiago/hnc-percussao/main/bumbo-rufo.mp3';
+    var TRI_ROLL_URL = 'https://raw.githubusercontent.com/GlauberLASantiago/hnc-percussao/main/tri-rufo.mp3';
 
     // Buffers decodificados dos samples (carregados uma vez)
     var percBuffers = { 1: null, 2: null, 3: null };
+    var caixaRollBuffer = null;
+    var bumboRollBuffer = null;
+    var triRollBuffer = null;
+    var pratoBuffer = null;
+    var pratoRollBuffer = null;
+
+    // Tipo do instrumento no part 1: 'triangulo' ou 'prato'
+    var part1Type = 'triangulo';
 
     /* ─── Estado global ─── */
     var EMBEDDED_XML = ``; // @EMBEDDED_XML_PLACEHOLDER@
@@ -1176,7 +1062,7 @@
         wetGain.connect(masterGain);
         masterGain.connect(compressor);
         compressor.connect(ac.destination);
-        masterGain.gain.value = 2.0;
+        masterGain.gain.value = 0.85;
         updateReverb();
     }
 
@@ -1199,6 +1085,32 @@
         return [node];
     }
 
+    /* ─── Detecta tipo do instrumento no part 1 a partir do XML ─── */
+    function detectPart1Type(xml) {
+        if (!xml) return 'triangulo';
+        try {
+            var parser = new DOMParser();
+            var doc = parser.parseFromString(xml, 'text/xml');
+            var partList = doc.querySelector('part-list');
+            if (partList) {
+                var scoreParts = partList.querySelectorAll('score-part');
+                if (scoreParts.length > 1) {
+                    var sp = scoreParts[1];
+                    var nameEl = sp.querySelector('part-name');
+                    var abbrEl = sp.querySelector('part-abbreviation');
+                    var name = (nameEl ? nameEl.textContent : '').toLowerCase();
+                    var abbr = (abbrEl ? abbrEl.textContent : '').toLowerCase();
+                    if (name.indexOf('prt') >= 0 || name.indexOf('prato') >= 0 || name.indexOf('crash') >= 0 ||
+                        name.indexOf('cymbal') >= 0 || name.indexOf('piatto') >= 0 ||
+                        abbr.indexOf('prt') >= 0 || abbr.indexOf('prato') >= 0 || abbr.indexOf('crash') >= 0) {
+                        return 'prato';
+                    }
+                }
+            }
+        } catch (_) { }
+        return 'triangulo';
+    }
+
     /* ─── Parts ─── */
     function initParts() {
         partConfigs = [];
@@ -1207,21 +1119,19 @@
         var guideWrap = document.getElementById('guidePartWrap');
         if (guideSelect) guideSelect.innerHTML = '';
 
+        // Detecta se part 1 é triângulo ou prato
+        part1Type = detectPart1Type(rawXml);
+
         parts.forEach(function (inst, idx) {
             var name = PART_NAMES_DEFAULT[idx] || ('Part ' + (idx + 1));
             if (inst.NameLabel && inst.NameLabel.text) name = inst.NameLabel.text;
             else if (inst.name) name = inst.name;
             // Atribui o programa conforme o índice: 0=oboé, 1=triângulo, 2=caixa, 3=bumbo
             var prog = PART_PROGRAMS[idx] || 'oboe';
-            // Triângulo (idx=1) inicia com volume 50%; demais 100%
-            var defaultVol = (idx === 1) ? 50 : 100;
+            // Volumes padrão: Oboé=100%, Triângulo=10%, Caixa=30%, Bumbo=30%
+            var defaultVols = [100, 10, 30, 30];
+            var defaultVol = defaultVols[idx] !== undefined ? defaultVols[idx] : 100;
             partConfigs.push({ name: name, program: prog, vol: defaultVol, oct: 0 });
-
-            // Sincroniza o slider com o volume padrão
-            var slider = document.getElementById('vol' + idx);
-            var label  = document.getElementById('vol' + idx + 'Label');
-            if (slider) { slider.value = defaultVol; updateVolSliderTrack(slider); }
-            if (label)  { label.textContent = defaultVol + '%'; }
 
             if (guideSelect) {
                 var opt = document.createElement('option');
@@ -1266,16 +1176,62 @@
         partInsts = []; partGains = [];
 
         // Carrega samples de percussão (fetch + decodeAudioData, reutiliza se já carregado)
+        // Limpa buffer do part 1 para recarregar conforme o tipo detectado
+        percBuffers[1] = null;
+        var part1SampleUrl = (part1Type === 'prato') ? PRATO_SAMPLE_URL : PERC_SAMPLES_URL[1];
         var percLoadPromises = [1, 2, 3].map(async function (percIdx) {
             if (percBuffers[percIdx]) return;
             try {
-                var resp = await fetch(PERC_SAMPLES_URL[percIdx]);
+                var url = (percIdx === 1) ? part1SampleUrl : PERC_SAMPLES_URL[percIdx];
+                var resp = await fetch(url);
                 var arrayBuffer = await resp.arrayBuffer();
                 percBuffers[percIdx] = await ac.decodeAudioData(arrayBuffer);
             } catch (e) {
                 console.warn('Erro ao carregar sample perc ' + percIdx + ':', e);
             }
         });
+        // Carrega sample de rufo de caixa
+        if (!caixaRollBuffer) {
+            percLoadPromises.push((async function () {
+                try {
+                    var resp = await fetch(CAIXA_ROLL_URL);
+                    var ab = await resp.arrayBuffer();
+                    caixaRollBuffer = await ac.decodeAudioData(ab);
+                } catch (e) { console.warn('Erro ao carregar sample rufo caixa:', e); }
+            })());
+        }
+        // Carrega sample de rufo de bumbo
+        if (!bumboRollBuffer) {
+            percLoadPromises.push((async function () {
+                try {
+                    var resp = await fetch(BUMBO_ROLL_URL);
+                    var ab = await resp.arrayBuffer();
+                    bumboRollBuffer = await ac.decodeAudioData(ab);
+                } catch (e) { console.warn('Erro ao carregar sample rufo bumbo:', e); }
+            })());
+        }
+        // Carrega sample de rufo de triângulo ou prato conforme tipo
+        triRollBuffer = null;
+        pratoRollBuffer = null;
+        if (part1Type === 'prato') {
+            percLoadPromises.push((async function () {
+                try {
+                    var resp = await fetch(PRATO_ROLL_URL);
+                    var ab = await resp.arrayBuffer();
+                    pratoRollBuffer = await ac.decodeAudioData(ab);
+                } catch (e) { console.warn('Erro ao carregar sample rufo prato:', e); }
+            })());
+        } else {
+            if (!triRollBuffer) {
+                percLoadPromises.push((async function () {
+                    try {
+                        var resp = await fetch(TRI_ROLL_URL);
+                        var ab = await resp.arrayBuffer();
+                        triRollBuffer = await ac.decodeAudioData(ab);
+                    } catch (e) { console.warn('Erro ao carregar sample rufo triângulo:', e); }
+                })());
+            }
+        }
         await Promise.all(percLoadPromises);
 
         var promises = partConfigs.map(async function (cfg, idx) {
@@ -1292,17 +1248,24 @@
                 (function (capturedIdx, capturedGain) {
                     partInsts[capturedIdx] = {
                         play: function (midi, when, opts) {
-                            var buf = percBuffers[capturedIdx];
+                            // Se for percussão com rufo, usa o sample de rufo
+                            var rollBuf = null;
+                            if (opts && opts.roll) {
+                                if (capturedIdx === 1) rollBuf = (part1Type === 'prato') ? pratoRollBuffer : triRollBuffer;
+                                else if (capturedIdx === 2) rollBuf = caixaRollBuffer;
+                                else if (capturedIdx === 3) rollBuf = bumboRollBuffer;
+                            }
+                            var isRoll = !!rollBuf;
+                            var buf = isRoll ? rollBuf : percBuffers[capturedIdx];
                             if (!buf || !ac) return null;
                             var src = ac.createBufferSource();
                             src.buffer = buf;
-                            var g = ac.createGain();
-                            g.gain.value = 1.0;
-                            src.connect(g);
-                            g.connect(capturedGain);
+                            src.connect(capturedGain);
                             src.start(when);
-                            var dur = (opts && opts.duration) ? opts.duration : buf.duration;
-                            src.stop(when + Math.min(dur, buf.duration));
+                            // Rufo: para o sample quando a duração da nota terminar
+                            if (isRoll && opts && opts.duration) {
+                                src.stop(when + opts.duration);
+                            }
                             return src;
                         }
                     };
@@ -1317,7 +1280,8 @@
     function updatePartMix() {
         var guideIdx = parseInt(document.getElementById('guidePartSelect').value) || 0;
         partConfigs.forEach(function (cfg, idx) {
-            var finalGain = (cfg.vol || 100) / 100;
+            var linear = (cfg.vol || 100) / 100;
+            var finalGain = Math.pow(linear, 1.5); // curva suave para controle mais natural
             if (soloActive && idx !== guideIdx) finalGain = 0;
             if (partGains[idx]) partGains[idx].gain.setTargetAtTime(finalGain, ac.currentTime, 0.05);
         });
@@ -1508,10 +1472,86 @@
         return null;
     }
 
+    /* ─── Pré-mapeamento de grace notes (acciaccaturas/apoggiaturas) no XML cru ─── */
+    function buildGraceMap() {
+        // Retorna: { 'pX_measureNum_noteIdx': graceCount } — quantas grace notes precedem aquela nota
+        var graceMap = {};
+        if (!rawXml) return graceMap;
+        try {
+            var parser = new DOMParser();
+            var doc = parser.parseFromString(rawXml, 'text/xml');
+            var parts = doc.querySelectorAll('part');
+            parts.forEach(function (partEl, pIdx) {
+                var measures = partEl.querySelectorAll('measure');
+                measures.forEach(function (measure) {
+                    var mNum = measure.getAttribute('number');
+                    var children = measure.querySelectorAll('note');
+                    var pendingGraces = 0;
+                    var realNoteIdx = 0;
+                    for (var c = 0; c < children.length; c++) {
+                        var noteEl = children[c];
+                        var isGrace = noteEl.querySelector('grace') !== null;
+                        var isRest = noteEl.querySelector('rest') !== null;
+                        if (isGrace) {
+                            pendingGraces++;
+                        } else if (!isRest) {
+                            if (pendingGraces > 0) {
+                                graceMap['p' + pIdx + '_' + mNum + '_' + realNoteIdx] = pendingGraces;
+                                pendingGraces = 0;
+                            }
+                            realNoteIdx++;
+                        } else {
+                            pendingGraces = 0;
+                            realNoteIdx++;
+                        }
+                    }
+                });
+            });
+        } catch (_) { }
+        return graceMap;
+    }
+
+    /* ─── Pré-mapeamento de rufos (tremolo) no XML cru ─── */
+    function buildRollMap() {
+        var rollSet = {};
+        if (!rawXml) return rollSet;
+        try {
+            var parser = new DOMParser();
+            var doc = parser.parseFromString(rawXml, 'text/xml');
+            var parts = doc.querySelectorAll('part');
+            // Interessa triângulo (index 1), caixa (index 2) e bumbo (index 3)
+            [1, 2, 3].forEach(function (pIdx) {
+                if (parts.length <= pIdx) return;
+                var partEl = parts[pIdx];
+                var measures = partEl.querySelectorAll('measure');
+                measures.forEach(function (measure) {
+                    var mNum = measure.getAttribute('number');
+                    var noteIndex = 0;
+                    measure.querySelectorAll('note').forEach(function (noteEl) {
+                        if (noteEl.querySelector('rest')) { noteIndex++; return; }
+                        var notations = noteEl.querySelector('notations');
+                        if (notations) {
+                            var tremolo = notations.querySelector('ornaments > tremolo');
+                            if (tremolo) {
+                                rollSet['p' + pIdx + '_' + mNum + '_' + noteIndex] = true;
+                            }
+                        }
+                        noteIndex++;
+                    });
+                });
+            });
+        } catch (_) { }
+        return rollSet;
+    }
+
     /* ─── Event extraction ─── */
     function extractEvents() {
         evs = []; pieceEnd = 0;
         var bpm = +document.getElementById('bpm').value || 100, beatLen = 60 / bpm;
+        var rollMap = buildRollMap();
+        var graceMap = buildGraceMap();
+        var rollMeasureNoteCount = {};
+        var graceMeasureNoteCount = {};
         var instIdMap = {};
         if (osmd.Sheet && osmd.Sheet.Instruments) {
             for (var m = 0; m < osmd.Sheet.Instruments.length; m++) {
@@ -1545,8 +1585,61 @@
                     if (!note || note.isRest()) continue;
                     if (isTieContinuation(note)) continue;
                     var midi = getMidiPitch(note); if (midi === null) continue;
+
+                    // Grace notes via XML map — agenda batidas antes da nota principal
+                    var mIdxG = iterator.CurrentMeasureIndex;
+                    var measureNumG = mIdxG + 1;
+                    try {
+                        if (osmd.Sheet && osmd.Sheet.SourceMeasures && osmd.Sheet.SourceMeasures[mIdxG]) {
+                            var smg = osmd.Sheet.SourceMeasures[mIdxG];
+                            if (smg.MeasureNumber !== undefined) measureNumG = smg.MeasureNumber;
+                        }
+                    } catch (_) { }
+                    var graceCountKey = 'p' + partIdx + '_' + measureNumG;
+                    if (!graceMeasureNoteCount[graceCountKey]) graceMeasureNoteCount[graceCountKey] = 0;
+                    var graceNoteIdx = graceMeasureNoteCount[graceCountKey];
+                    graceMeasureNoteCount[graceCountKey]++;
+                    var graceKey = 'p' + partIdx + '_' + measureNumG + '_' + graceNoteIdx;
+                    var graceCount = graceMap[graceKey] || 0;
+                    if (graceCount > 0) {
+                        var graceDur = 0.06;
+                        var graceStart = tSec - (graceCount * graceDur);
+                        if (graceStart < 0) graceStart = 0;
+                        for (var gi = 0; gi < graceCount; gi++) {
+                            evs.push({ t: graceStart + (gi * graceDur), midi: midi, dur: graceDur, part: partIdx, roll: false });
+                        }
+                    }
+
                     var dur = getTiedDuration(note, beatLen);
-                    evs.push({ t: tSec, midi: midi, dur: dur, part: partIdx });
+                    // Detecta rufo/tremolo no triângulo (part 1), caixa (part 2) e bumbo (part 3)
+                    var isRoll = false;
+                    if (partIdx === 1 || partIdx === 2 || partIdx === 3) {
+                        try {
+                            // 1) Via rollMap (pré-mapeado do XML cru — mais confiável)
+                            var mIdx = iterator.CurrentMeasureIndex;
+                            var measureNumber = mIdx + 1;
+                            if (osmd.Sheet && osmd.Sheet.SourceMeasures && osmd.Sheet.SourceMeasures[mIdx]) {
+                                var sm = osmd.Sheet.SourceMeasures[mIdx];
+                                if (sm.MeasureNumber !== undefined) measureNumber = sm.MeasureNumber;
+                            }
+                            var countKey = 'p' + partIdx + '_' + measureNumber;
+                            if (!rollMeasureNoteCount[countKey]) rollMeasureNoteCount[countKey] = 0;
+                            var noteIdx = rollMeasureNoteCount[countKey];
+                            if (rollMap['p' + partIdx + '_' + measureNumber + '_' + noteIdx]) isRoll = true;
+                            rollMeasureNoteCount[countKey]++;;
+
+                            // 2) Fallback via propriedades OSMD
+                            if (!isRoll && note.Notations && note.Notations.length) {
+                                for (var ni = 0; ni < note.Notations.length; ni++) {
+                                    var nt = note.Notations[ni];
+                                    if (nt && (nt.Tremolo || nt.tremolo)) { isRoll = true; break; }
+                                }
+                            }
+                            if (!isRoll && note.tremoloStrokes && note.tremoloStrokes > 0) isRoll = true;
+                            if (!isRoll && note.TremoloStrokes && note.TremoloStrokes > 0) isRoll = true;
+                        } catch (_) { }
+                    }
+                    evs.push({ t: tSec, midi: midi, dur: dur, part: partIdx, roll: isRoll });
                     if (tSec + dur > pieceEnd) pieceEnd = tSec + dur;
                 }
             }
@@ -1576,7 +1669,7 @@
                     var partOct = (partConfigs[ev.part] && partConfigs[ev.part].oct) || 0;
                     if (partInsts[ev.part] && typeof partInsts[ev.part].play === 'function') {
                         // Sem transposição global — som direto
-                        var n = partInsts[ev.part].play(ev.midi + partOct, when, { duration: ev.dur });
+                        var n = partInsts[ev.part].play(ev.midi + partOct, when, { duration: ev.dur, roll: ev.roll });
                         if (n) sc.push(n);
                     }
                 }
@@ -1649,6 +1742,59 @@
         } catch (e) { throw new Error("Erro ao descompactar MXL: " + e.message); }
     }
 
+    /* ─── Transforma XML para percussão: notas na linha central, hastes para baixo, sem armadura ─── */
+    function transformPercXml(xml) {
+        var parser = new DOMParser();
+        var doc = parser.parseFromString(xml, 'text/xml');
+        var parts = doc.querySelectorAll('part');
+        parts.forEach(function (part, pIdx) {
+            if (pIdx === 0) return; // staff 0 = Oboé, não alterar
+            // Remove armaduras de clave
+            part.querySelectorAll('key').forEach(function (k) {
+                var fifths = k.querySelector('fifths');
+                if (fifths) fifths.textContent = '0';
+                // Remove mode se existir
+                var mode = k.querySelector('mode');
+                if (mode) mode.parentNode.removeChild(mode);
+            });
+            // Notas na linha central (B4) com haste para baixo
+            part.querySelectorAll('note').forEach(function (note) {
+                if (note.querySelector('rest')) return; // pula pausas
+
+                // Trata notas com <pitch>
+                var pitch = note.querySelector('pitch');
+                if (pitch) {
+                    var step = pitch.querySelector('step');
+                    var octave = pitch.querySelector('octave');
+                    var alter = pitch.querySelector('alter');
+                    if (step) step.textContent = 'E';
+                    if (octave) octave.textContent = '4';
+                    if (alter) alter.parentNode.removeChild(alter);
+                }
+
+                // Trata notas de percussão com <unpitched>
+                var unpitched = note.querySelector('unpitched');
+                if (unpitched) {
+                    var ds = unpitched.querySelector('display-step');
+                    var doct = unpitched.querySelector('display-octave');
+                    if (ds) ds.textContent = 'E';
+                    if (doct) doct.textContent = '4';
+                }
+
+                // Haste para baixo
+                var stem = note.querySelector('stem');
+                if (stem) {
+                    stem.textContent = 'down';
+                } else {
+                    stem = doc.createElement('stem');
+                    stem.textContent = 'down';
+                    note.appendChild(stem);
+                }
+            });
+        });
+        return new XMLSerializer().serializeToString(doc);
+    }
+
     async function afterXmlLoaded() {
         originalXmlBpm = extractTempoFromXml(rawXml);
         if (originalXmlBpm) {
@@ -1656,7 +1802,8 @@
             document.getElementById('bpm').value = reduce ? Math.max(20, originalXmlBpm - 30) : originalXmlBpm;
         }
 
-        await osmd.load(rawXml);
+        var displayXml = transformPercXml(rawXml);
+        await osmd.load(displayXml);
 
         var zoomEl = document.getElementById('zoomInp');
         if (window.innerWidth < 768 && zoomEl.value == "100") zoomEl.value = "50";
@@ -1668,6 +1815,10 @@
         ac = new (window.AudioContext || window.webkitAudioContext)();
         // Limpa buffers para redecodificar no novo AudioContext
         percBuffers = { 1: null, 2: null, 3: null };
+        caixaRollBuffer = null;
+        bumboRollBuffer = null;
+        triRollBuffer = null;
+        pratoRollBuffer = null;
         setupFx(); initParts();
         buildMeasureTimeMap(); updateRangeInputs();
         sat = 0; pat = 0; run = false; evs = []; sc = []; pieceEnd = 0;
@@ -1711,7 +1862,7 @@
     async function loadHymnList() {
         var select = document.getElementById('hymnSelect');
         try {
-            var githubApiUrl = 'https://api.github.com/repos/GlauberLASantiago/dedo-de-trompetista/contents/Instrumentos-Bb';
+            var githubApiUrl = 'https://api.github.com/repos/GlauberLASantiago/hnc-percussao/contents/percussao';
             var response = await fetch(githubApiUrl);
             if (!response.ok) {
                 if (response.status === 404) throw new Error('Pasta não encontrada (404)');
@@ -1811,7 +1962,7 @@
         afterXmlLoaded();
     } else {
         loadHymnList();
-        var defaultUrl = 'https://raw.githubusercontent.com/GlauberLASantiago/dedo-de-trompetista/main/Instrumentos-Bb/001_1%C2%AAM_ad.mxl';
+        var defaultUrl = 'https://raw.githubusercontent.com/GlauberLASantiago/hnc-percussao/main/percussao/001_1%C2%AAM_ad.mxl';
         document.getElementById('fname').textContent = "Carregando padrão...";
         loadFromUrl(defaultUrl, "001_1ªM_ad");
     }
@@ -1884,33 +2035,6 @@
         this.classList.toggle('active', soloActive);
         updatePartMix();
     };
-
-    /* ─── Controles de Volume por Staff ─── */
-    function updateVolSliderTrack(slider) {
-        var pct = ((slider.value - slider.min) / (slider.max - slider.min)) * 100;
-        slider.style.setProperty('--vol-pct', pct + '%');
-    }
-
-    // Inicializa trilhas visuais dos sliders (valores padrão do HTML)
-    [0, 1, 2, 3].forEach(function (idx) {
-        var slider = document.getElementById('vol' + idx);
-        if (slider) updateVolSliderTrack(slider);
-    });
-
-    [0, 1, 2, 3].forEach(function (idx) {
-        var slider = document.getElementById('vol' + idx);
-        var label  = document.getElementById('vol' + idx + 'Label');
-        if (!slider) return;
-        slider.addEventListener('input', function () {
-            var val = parseInt(this.value);
-            if (label) label.textContent = val + '%';
-            updateVolSliderTrack(this);
-            if (partConfigs[idx] !== undefined) {
-                partConfigs[idx].vol = val;
-                updatePartMix();
-            }
-        });
-    });
 
     /* ─── Painel Bluetooth ─── */
     (function () {
